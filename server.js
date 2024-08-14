@@ -24,6 +24,14 @@ db.connect((err) => {
 });
 
 // Login route
+app.get('/users', (req, res) => {
+    const query = 'SELECT * FROM users';
+    db.query(query, (err, results) => {
+        if (err) throw err;
+        res.json(results);
+    });
+});
+
 app.post('/login', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
